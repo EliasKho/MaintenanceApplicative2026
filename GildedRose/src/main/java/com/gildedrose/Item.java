@@ -48,30 +48,19 @@ public abstract class Item {
 
     //Mise en place d'une fabrique pour renvoyer le bon item
     public static Item create(String name, int sellIn, int quality){
-        Item item;
-        switch (name){
-            case AGED_BRIE:
-                item = new AgedBrie(sellIn,quality);
-                break;
-            case SULFURAS:
-                item = new Sulfuras(sellIn,quality);
-                break;
-            case BACKSTAGE_PASSE:
-                item = new BackstagePasses(sellIn,quality);
-                break;
-            default:
-                item = new DefaultItem(name,sellIn,quality);
-                break;
-        }
-
-        return item;
+        return switch (name) {
+            case AGED_BRIE -> new AgedBrie(sellIn, quality);
+            case SULFURAS -> new Sulfuras(sellIn, quality);
+            case BACKSTAGE_PASSE -> new BackstagePasses(sellIn, quality);
+            default -> new DefaultItem(name, sellIn, quality);
+        };
     }
 
     public abstract void updateQuality();
 
     /**
      * Méthode toString pour imprimer l'objet
-     * @return
+     * @return impression de l'objet
      */
     @Override
     public String toString() {
