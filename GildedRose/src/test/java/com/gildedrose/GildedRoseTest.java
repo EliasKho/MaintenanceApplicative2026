@@ -21,7 +21,7 @@ class GildedRoseTest {
     void test_brie_sell0plus_qual50moins() {
         Item[] items = new Item[] { Item.create(brie, 10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        items[0].updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(16, app.items[0].quality);
     }
@@ -30,7 +30,7 @@ class GildedRoseTest {
     void test_brie_sell0plus_qual50plus() {
         Item[] items = new Item[] { Item.create(brie, 10, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        items[0].updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(60, app.items[0].quality);
     }
@@ -39,7 +39,7 @@ class GildedRoseTest {
     void test_brie_sell0moins_qual50plus() {
         Item[] items = new Item[] { Item.create(brie, -5, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        items[0].updateQuality();
         assertEquals(-6, app.items[0].sellIn);
         assertEquals(60, app.items[0].quality);
     }
@@ -48,7 +48,7 @@ class GildedRoseTest {
     void test_brie_sell0moins_qual50moins() {
         Item[] items = new Item[] { Item.create(brie, -5, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        items[0].updateQuality();
         assertEquals(-6, app.items[0].sellIn);
         assertEquals(17, app.items[0].quality);
     }
@@ -58,7 +58,7 @@ class GildedRoseTest {
     void test_sulfuras_sellin0plus() {
         Item[] items = new Item[] { Item.create(sulfuras, 10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        items[0].updateQuality();
         assertEquals(10, app.items[0].sellIn);
         assertEquals(15, app.items[0].quality);
     }
@@ -67,7 +67,7 @@ class GildedRoseTest {
     void test_sulfuras_sellin0moins() {
         Item[] items = new Item[] { Item.create(sulfuras, -10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        items[0].updateQuality();
         assertEquals(-10, app.items[0].sellIn);
         assertEquals(15, app.items[0].quality);
     }
