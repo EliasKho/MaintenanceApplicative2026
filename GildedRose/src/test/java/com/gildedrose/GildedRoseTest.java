@@ -21,7 +21,7 @@ class GildedRoseTest {
     void test_brie_sell0plus_qual50moins() {
         Item[] items = new Item[] { Item.create(brie, 10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(16, app.items[0].quality);
     }
@@ -30,7 +30,7 @@ class GildedRoseTest {
     void test_brie_sell0plus_qual50plus() {
         Item[] items = new Item[] { Item.create(brie, 10, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(60, app.items[0].quality);
     }
@@ -39,7 +39,7 @@ class GildedRoseTest {
     void test_brie_sell0moins_qual50plus() {
         Item[] items = new Item[] { Item.create(brie, -5, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(-6, app.items[0].sellIn);
         assertEquals(60, app.items[0].quality);
     }
@@ -48,7 +48,7 @@ class GildedRoseTest {
     void test_brie_sell0moins_qual50moins() {
         Item[] items = new Item[] { Item.create(brie, -5, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(-6, app.items[0].sellIn);
         assertEquals(17, app.items[0].quality);
     }
@@ -58,7 +58,7 @@ class GildedRoseTest {
     void test_sulfuras_sellin0plus() {
         Item[] items = new Item[] { Item.create(sulfuras, 10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(10, app.items[0].sellIn);
         assertEquals(15, app.items[0].quality);
     }
@@ -67,7 +67,7 @@ class GildedRoseTest {
     void test_sulfuras_sellin0moins() {
         Item[] items = new Item[] { Item.create(sulfuras, -10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(-10, app.items[0].sellIn);
         assertEquals(15, app.items[0].quality);
     }
@@ -76,7 +76,7 @@ class GildedRoseTest {
     void test_passes_sell11plus_qual50plus(){
         Item[] items = new Item[] { Item.create(passes, 15, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(14, app.items[0].sellIn);
         assertEquals(60, app.items[0].quality);
     }
@@ -85,7 +85,7 @@ class GildedRoseTest {
     void test_passes_sell11plus_qual0moins(){
         Item[] items = new Item[] { Item.create(passes, 15, -15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(14, app.items[0].sellIn);
         assertEquals(-14, app.items[0].quality);
     }
@@ -94,7 +94,7 @@ class GildedRoseTest {
     void test_passes_sell11moins_qual50plus(){
         Item[] items = new Item[] { Item.create(passes, 8, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(7, app.items[0].sellIn);
         assertEquals(60, app.items[0].quality);
     }
@@ -103,7 +103,7 @@ class GildedRoseTest {
     void test_passes_sell11moins_qual50moins(){
         Item[] items = new Item[] { Item.create(passes, 10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(17, app.items[0].quality);
     }
@@ -113,7 +113,7 @@ class GildedRoseTest {
     void test_passes_sell11moins_qual0moins(){
         Item[] items = new Item[] { Item.create(passes, 10, -15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(-13, app.items[0].quality);
     }
@@ -122,7 +122,7 @@ class GildedRoseTest {
     void test_passes_sell11moins_qual49() {
         Item[] items = new Item[] { Item.create(passes, 10, 49) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(50, app.items[0].quality);
     }
@@ -131,7 +131,7 @@ class GildedRoseTest {
     void test_passes_sell6moins_qual50plus(){
         Item[] items = new Item[] { Item.create(passes, 5, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(4, app.items[0].sellIn);
         assertEquals(60, app.items[0].quality);
     }
@@ -140,7 +140,7 @@ class GildedRoseTest {
     void test_passes_sell6moins_qual50moins(){
         Item[] items = new Item[] { Item.create(passes, 5, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(4, app.items[0].sellIn);
         assertEquals(18, app.items[0].quality);
     }
@@ -149,7 +149,7 @@ class GildedRoseTest {
     void test_passes_sell6moins_qual0moins(){
         Item[] items = new Item[] { Item.create(passes, 5, -15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(4, app.items[0].sellIn);
         assertEquals(-12, app.items[0].quality);
     }
@@ -158,7 +158,7 @@ class GildedRoseTest {
     void test_passes_sell6moins_qual49() {
         Item[] items = new Item[] { Item.create(passes, 5, 49) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(4, app.items[0].sellIn);
         assertEquals(50, app.items[0].quality);
     }
@@ -167,7 +167,7 @@ class GildedRoseTest {
     void test_passes_sell6moins_qual48() {
         Item[] items = new Item[] { Item.create(passes, 5, 48) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(4, app.items[0].sellIn);
         assertEquals(50, app.items[0].quality);
     }
@@ -176,7 +176,7 @@ class GildedRoseTest {
     void test_passes_sell0moins(){
         Item[] items = new Item[] { Item.create(passes, -10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(-11, app.items[0].sellIn);
         assertEquals(0, app.items[0].quality);
     }
@@ -185,7 +185,7 @@ class GildedRoseTest {
     void test_autre_sell0plus_qual50plus(){
         Item[] items = new Item[] { Item.create("autre", 10, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(59, app.items[0].quality);
     }
@@ -194,7 +194,7 @@ class GildedRoseTest {
     void test_autre_sell0plus_qual50moins(){
         Item[] items = new Item[] { Item.create("autre", 10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(14, app.items[0].quality);
     }
@@ -203,7 +203,7 @@ class GildedRoseTest {
     void test_autre_sell0plus_qual0moins(){
         Item[] items = new Item[] { Item.create("autre", 10, -15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(9, app.items[0].sellIn);
         assertEquals(-15, app.items[0].quality);
     }
@@ -212,7 +212,7 @@ class GildedRoseTest {
     void test_autre_sell0moins_qual50plus(){
         Item[] items = new Item[] { Item.create("autre", -10, 60) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(-11, app.items[0].sellIn);
         assertEquals(58, app.items[0].quality);
     }
@@ -221,7 +221,7 @@ class GildedRoseTest {
     void test_autre_sell0moins_qual50moins(){
         Item[] items = new Item[] { Item.create("autre", -10, 15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(-11, app.items[0].sellIn);
         assertEquals(13, app.items[0].quality);
     }
@@ -230,7 +230,7 @@ class GildedRoseTest {
     void test_autre_sell0moins_qual0moins(){
         Item[] items = new Item[] { Item.create("autre", -10, -15) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality2();
+        app.updateQuality();
         assertEquals(-11, app.items[0].sellIn);
         assertEquals(-15, app.items[0].quality);
     }
@@ -241,6 +241,24 @@ class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         assertEquals("foo", app.items[0].name);
         assertEquals("foo, 0, 1", app.items[0].toString());
+    }
+
+    @Test
+    void test_multiObjet(){
+        Item[] items = new Item[] { Item.create("foo", 0, 1),
+        Item.create(sulfuras, 0, 1),
+        Item.create(passes, 0, 1),
+        Item.create(brie, 0, 1),};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(-1, app.items[0].quality);
+        assertEquals(0, app.items[1].sellIn);
+        assertEquals(1, app.items[1].quality);
+        assertEquals(-1, app.items[2].sellIn);
+        assertEquals(-0, app.items[2].quality);
+        assertEquals(-1, app.items[3].sellIn);
+        assertEquals(3, app.items[3].quality);
     }
 
 }
