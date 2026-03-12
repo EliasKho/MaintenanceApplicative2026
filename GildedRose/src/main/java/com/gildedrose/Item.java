@@ -17,17 +17,17 @@ public abstract class Item {
     /**
      * nom de l'objet
      */
-    public String name;
+    protected String name;
 
     /**
      * prix de vente de l'objet
      */
-    public int sellIn;
+    protected int sellIn;
 
     /**
      * qualité de l'objet
      */
-    public int quality;
+    protected int quality;
 
 
     //CONSTRUCTEUR
@@ -66,6 +66,8 @@ public abstract class Item {
 
         return item;
     }
+
+    public abstract void updateQuality();
 
     /**
      * Méthode toString pour imprimer l'objet

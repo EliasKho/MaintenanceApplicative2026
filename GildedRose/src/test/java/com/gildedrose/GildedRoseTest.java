@@ -36,7 +36,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void test_aged_brie_sell0moins_qual50plus() {
+    void test_brie_sell0moins_qual50plus() {
         Item[] items = new Item[] { Item.create(brie, -5, 60) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -45,7 +45,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void test_aged_brie_sell0moins_qual50moins() {
+    void test_brie_sell0moins_qual50moins() {
         Item[] items = new Item[] { Item.create(brie, -5, 15) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
