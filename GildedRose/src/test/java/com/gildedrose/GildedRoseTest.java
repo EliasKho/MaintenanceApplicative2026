@@ -4,11 +4,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Classe de test initiale pour vérifier le fonctionnement du programme
+ */
 class GildedRoseTest {
+
+    //Raccourci des noms des items
 
     String brie = "Aged Brie";
     String sulfuras = "Sulfuras, Hand of Ragnaros";
     String passes = "Backstage passes to a TAFKAL80ETC concert";
+
+
+    //Tests
 
     @Test
     void test_brie_sell0plus_qual50moins() {

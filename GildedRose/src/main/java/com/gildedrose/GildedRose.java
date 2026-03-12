@@ -1,12 +1,34 @@
 package com.gildedrose;
 
+/**
+ * Classe représentant une auberge
+ */
 class GildedRose {
+
+    //ATTRIBUTS
+
+    /**
+     * liste des objets
+     */
     Item[] items;
 
+
+    //CONSTRUCTEUR
+
+    /**
+     * Constructeur à partir d'un tableau d'objets
+     * @param items tableau d'items
+     */
     public GildedRose(Item[] items) {
         this.items = items;
     }
 
+
+    //METHODES
+    //TODO Refactor de la méthode
+    /**
+     * Méthode pour mettre à jour la qualité d'un objet
+     */
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals("Aged Brie")
