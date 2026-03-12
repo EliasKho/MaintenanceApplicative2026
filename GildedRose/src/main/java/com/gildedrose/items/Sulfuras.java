@@ -14,4 +14,11 @@ public class Sulfuras extends Item {
         super(Item.SULFURAS, sellIn, quality);
     }
 
+    /**
+     * Méthode héritée pour mettre à jour la qualité
+     */
+    @Override
+    public void updateQuality() {
+        //Cet objet doit garder les mêmes valeurs
+    }
 }
