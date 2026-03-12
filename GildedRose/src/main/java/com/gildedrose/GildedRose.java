@@ -81,4 +81,10 @@ class GildedRose {
             }
         }
     }
+
+    public void updateQuality2() {
+        for (Item item : items) {
+            item.updateQuality();
+        }
+    }
 }
