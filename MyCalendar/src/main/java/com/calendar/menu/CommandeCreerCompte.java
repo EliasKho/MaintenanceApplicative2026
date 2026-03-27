@@ -1,27 +1,31 @@
 package com.calendar.menu;
 
-import com.calendar.menu.*;
 import com.calendar.Agenda;
+import com.calendar.event.*;
+import com.calendar.ServiceSauvegarde;
 import com.calendar.utilisateur.*;
 import com.calendar.vo.*;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CommandeCreerCompte implements CommandeMenu {
+    private final ServiceSauvegarde sauvegarde;
+
+    public CommandeCreerCompte(ServiceSauvegarde sauvegarde) {
+        this.sauvegarde = sauvegarde;
+    }
+
     @Override
     public void executer(Scanner sc, User session, Agenda agenda, List<User> annuaire) {
         System.out.print("Nom d'utilisateur : ");
-        NomUtilisateur nom = new NomUtilisateur(sc.nextLine());
+        String nom = sc.nextLine();
         System.out.print("Mot de passe : ");
-        String mdpRaw = sc.nextLine();
-        System.out.print("Répéter mot de passe : ");
+        String mdp = sc.nextLine();
 
-        // Zéro IF : on utilise une validation qui lève une exception si ça ne match pas
-        if (!sc.nextLine().equals(mdpRaw)) {
-            throw new RuntimeException("Les mots de passe ne correspondent pas.");
-        }
+        User nouveau = new User(new NomUtilisateur(nom), new MDPUtilisateur(mdp));
+        annuaire.add(nouveau);
 
-        annuaire.add(new User(nom, new MDPUtilisateur(mdpRaw)));
-        System.out.println("Compte créé avec succès.");
+        // Sauvegarde immédiate après modification
+        sauvegarde.sauvegarderUtilisateurs(annuaire);
+        System.out.println("Compte créé et sauvegardé.");
     }
 }

@@ -2,19 +2,28 @@ package com.calendar.menu;
 
 import com.calendar.Agenda;
 import com.calendar.event.*;
-import com.calendar.utilisateur.User;
+import com.calendar.ServiceSauvegarde;
+import com.calendar.utilisateur.*;
 import com.calendar.vo.*;
-
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CommandeAjouterRDV implements CommandeMenu {
-    public void executer(Scanner sc, User session, Agenda agenda, List<User> ann) {
-        agenda.ajouter(new RDV(
-                new TitreEvenement(SaisieUtils.demander(sc, "Titre")),
-                session,
-                SaisieUtils.demanderDate(sc),
-                new DureeMinute(Integer.parseInt(SaisieUtils.demander(sc, "Durée (min)")))
-        ));
+    private final ServiceSauvegarde sauvegarde;
+
+    public CommandeAjouterRDV(ServiceSauvegarde sauvegarde) {
+        this.sauvegarde = sauvegarde;
+    }
+
+    @Override
+    public void executer(Scanner sc, User session, Agenda agenda, List<User> annuaire) {
+        System.out.print("Titre de l'événement : ");
+        TitreEvenement titre = new TitreEvenement(sc.nextLine());
+        DateEvenement date = SaisieUtils.demanderDate(sc);
+        System.out.print("Durée (en minutes) : ");
+        DureeMinute duree = new DureeMinute(Integer.parseInt(sc.nextLine()));
+
+        agenda.ajouter(new RDV(titre, session, date, duree));
+        sauvegarde.sauvegarderAgenda(agenda);
+        System.out.println("Événement ajouté.");
     }
 }

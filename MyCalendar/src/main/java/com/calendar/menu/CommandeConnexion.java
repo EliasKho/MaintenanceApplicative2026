@@ -1,11 +1,9 @@
 package com.calendar.menu;
 
-import com.calendar.menu.*;
 import com.calendar.Agenda;
+import com.calendar.event.*;
 import com.calendar.utilisateur.*;
-import com.calendar.vo.*;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CommandeConnexion implements CommandeMenu {
     @Override
@@ -15,12 +13,14 @@ public class CommandeConnexion implements CommandeMenu {
         System.out.print("Mot de passe : ");
         String mdp = sc.nextLine();
 
-        // On cherche l'utilisateur. Si non trouvé, on lève une exception pour le catch du Main
-        annuaire.stream()
+        User trouve = annuaire.stream()
                 .filter(u -> u.nomUtilisateur.valeur().equals(nom) && u.mdpUtilisateur.valeur().equals(mdp))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Identifiants incorrects."));
 
+        // Astuce technique : on le déplace à la fin pour que Main récupère la session
+        annuaire.remove(trouve);
+        annuaire.add(trouve);
         System.out.println("Connexion réussie !");
     }
 }

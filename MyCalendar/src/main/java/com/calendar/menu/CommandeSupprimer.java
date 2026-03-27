@@ -2,13 +2,25 @@ package com.calendar.menu;
 
 import com.calendar.Agenda;
 import com.calendar.event.*;
-import com.calendar.utilisateur.User;
+import com.calendar.ServiceSauvegarde;
+import com.calendar.utilisateur.*;
 import com.calendar.vo.*;
 import java.util.*;
 
 public class CommandeSupprimer implements CommandeMenu {
-    public void executer(Scanner sc, User session, Agenda agenda, List<User> ann) {
-        String id = SaisieUtils.demander(sc, "ID de l'événement à supprimer");
-        agenda.supprimer(new EventId(UUID.fromString(id)));
+    private final ServiceSauvegarde sauvegarde;
+
+    public CommandeSupprimer(ServiceSauvegarde sauvegarde) {
+        this.sauvegarde = sauvegarde;
+    }
+
+    @Override
+    public void executer(Scanner sc, User session, Agenda agenda, List<User> annuaire) {
+        System.out.print("Entrez l'UUID de l'événement à supprimer : ");
+        EventId id = new EventId(UUID.fromString(sc.nextLine()));
+
+        agenda.supprimer(id);
+        sauvegarde.sauvegarderAgenda(agenda);
+        System.out.println("Événement supprimé.");
     }
 }

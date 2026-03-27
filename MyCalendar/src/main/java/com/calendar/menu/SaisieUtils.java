@@ -1,23 +1,20 @@
 package com.calendar.menu;
 
-
 import com.calendar.vo.DateEvenement;
-
 import java.util.Scanner;
 
-class SaisieUtils {
-    public static String demander(Scanner sc, String invite) {
-        System.out.print(invite + " : ");
-        return sc.nextLine();
-    }
-
+public class SaisieUtils {
     public static DateEvenement demanderDate(Scanner sc) {
-        return new DateEvenement(
-                Integer.parseInt(demander(sc, "Année")),
-                Integer.parseInt(demander(sc, "Mois")),
-                Integer.parseInt(demander(sc, "Jour")),
-                Integer.parseInt(demander(sc, "Heure")),
-                Integer.parseInt(demander(sc, "Minute"))
-        );
+        System.out.print("Année (AAAA) : ");
+        int annee = Integer.parseInt(sc.nextLine());
+        System.out.print("Mois (1-12) : ");
+        int mois = Integer.parseInt(sc.nextLine());
+        System.out.print("Jour (1-31) : ");
+        int jour = Integer.parseInt(sc.nextLine());
+        System.out.print("Heure début (0-23) : ");
+        int heure = Integer.parseInt(sc.nextLine());
+        System.out.print("Minute début (0-59) : ");
+        int minute = Integer.parseInt(sc.nextLine());
+        return new DateEvenement(annee, mois, jour, heure, minute);
     }
 }
