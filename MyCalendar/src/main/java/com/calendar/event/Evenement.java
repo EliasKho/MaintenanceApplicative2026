@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  */
 public abstract class Evenement {
     public final EventId eventId;
-    public TitreEvenement  titreEvenement;
+    public TitreEvenement titreEvenement;
     public User proprietaire;
     public DateEvenement dateDebut;
     public DureeMinute dureeMinutes;
