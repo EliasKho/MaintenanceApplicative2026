@@ -18,6 +18,6 @@ public class User {
     @Override
     public String toString()
     {
-        return nomUtilisateur.toString();
+        return nomUtilisateur.valeur();
     }
 }

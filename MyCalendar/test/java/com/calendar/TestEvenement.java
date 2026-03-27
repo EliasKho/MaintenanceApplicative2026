@@ -77,16 +77,16 @@ class TestEvenement {
         RDV rdv = new RDV(titreRDV, user, dateEvenement, dureeMinute);
 
         //THEN
-        assertEquals("RDV : "+ rdv.titreEvenement + " à " + dateEvenement.toString(),rdv.description());
+        assertEquals("RDV : "+ rdv.titreEvenement.valeur() + " à " + dateEvenement.toString(),rdv.description());
     }
 
     @Test
     void test_description_reunion_0participants() {
         //WHEN
-        Reunion reunion = new Reunion(titreReunion, user, dateEvenement, dureeMinute, new LieuReunion("salle1"), users);
+        Reunion reunion = new Reunion(titreReunion, user, dateEvenement, dureeMinute, new LieuReunion("salle1"), new ArrayList<>());
 
         //THEN
-        assertEquals("Réunion : "+ reunion.titreEvenement + " à " + reunion.lieuReunion +
+        assertEquals("Réunion : "+ reunion.titreEvenement.valeur() + " à " + reunion.lieuReunion.valeur() +
                         " avec u1",
                 reunion.description());
     }
@@ -98,7 +98,7 @@ class TestEvenement {
                 new ArrayList<User>(List.of(user2)));
 
         //THEN
-        assertEquals("Réunion : "+ reunion.titreEvenement + " à " + reunion.lieuReunion +
+        assertEquals("Réunion : "+ reunion.titreEvenement.valeur() + " à " + reunion.lieuReunion.valeur() +
                         " avec " + "u1, u2",
                 reunion.description());
     }
@@ -109,7 +109,7 @@ class TestEvenement {
         Reunion reunion = new Reunion(titreReunion, user, dateEvenement, dureeMinute, new LieuReunion("salle1"), users);
 
         //THEN
-        assertEquals("Réunion : "+ reunion.titreEvenement + " à " + reunion.lieuReunion +
+        assertEquals("Réunion : "+ reunion.titreEvenement.valeur() + " à " + reunion.lieuReunion.valeur() +
                         " avec " + "u1, u1, u2",
                 reunion.description());
     }
@@ -120,7 +120,7 @@ class TestEvenement {
         Periodique periodique = new Periodique(titrePeriodique, user, dateEvenement, dureeMinute, recurrence);
 
         //THEN
-        assertEquals("Événement périodique : "+ periodique.titreEvenement + " tous les " + recurrence.valeur() + "jours",
+        assertEquals("Événement périodique : "+ periodique.titreEvenement.valeur() + " tous les " + recurrence.valeur() + "jours",
                 periodique.description());
     }
 
@@ -134,7 +134,7 @@ class TestEvenement {
         DateEvenement fin = rdv.getDateFin();
 
         //THEN
-        assertEquals("2026/01/01 à 8h45", fin.toString());
+        assertEquals("2026/01/01 à 08h45", fin.toString());
     }
 
     @Test
@@ -147,7 +147,7 @@ class TestEvenement {
         DateEvenement fin = rdv.getDateFin();
 
         //THEN
-        assertEquals("2026/01/01 à 9h15", fin.toString());
+        assertEquals("2026/01/01 à 09h15", fin.toString());
     }
 
     @Test
@@ -160,7 +160,7 @@ class TestEvenement {
         DateEvenement fin = rdv.getDateFin();
 
         //THEN
-        assertEquals("2026/01/02 à 8h01", fin.toString());
+        assertEquals("2026/01/02 à 08h01", fin.toString());
     }
 
     @Test
