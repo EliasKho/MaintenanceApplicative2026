@@ -1,8 +1,8 @@
 package com.calendar;
 
+import com.calendar.utilisateur.User;
 import com.calendar.vo.*;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestValueObject {
@@ -259,7 +259,7 @@ class TestValueObject {
     }
 
     @Test
-    void test_DateEvenement_mintue_negatif(){
+    void test_DateEvenement_minute_negatif(){
         // WHEN & THEN
         assertThrows(IllegalArgumentException.class, () -> {
             new DateEvenement(2026,1,1,1,-1);
@@ -267,11 +267,124 @@ class TestValueObject {
     }
 
     @Test
-    void test_DateEvenement_mintue_60(){
+    void test_DateEvenement_minute_60(){
         // WHEN & THEN
         assertThrows(IllegalArgumentException.class, () -> {
             new DateEvenement(2026,1,1,1,60);
         },"La minute entrée n'est pas entre 0 et 59.");
+    }
+
+    @Test
+    void test_DateEvenement_toString(){
+        //WHEN
+        String toString =  new DateEvenement(2026,1,2,14,4).toString();
+
+        //THEN
+        assertEquals("2026/01/02 à 14h04", toString);
+    }
+
+    @Test
+    void test_User_toString(){
+        //GIVEN
+        NomUtilisateur username = new NomUtilisateur("Alice123");
+        MDPUtilisateur password = new MDPUtilisateur("mdp123");
+
+        //WHEN
+        String toString = new User(username,password).toString();
+
+        //THEN
+        assertEquals("Alice123", toString);
+    }
+
+    @Test
+    void test_DateEvenement_estAvant_vrai_meme_jour() {
+        // GIVEN
+        DateEvenement matin = new DateEvenement(2026, 1, 1, 8, 0);
+        DateEvenement plusTard = new DateEvenement(2026, 1, 1, 8, 30);
+
+        // WHEN
+        boolean resultat = matin.estAvant(plusTard);
+
+        // THEN
+        assertTrue(resultat);
+    }
+
+    @Test
+    void test_DateEvenement_estAvant_vrai_jours_differents() {
+        // GIVEN
+        DateEvenement jour1 = new DateEvenement(2026, 1, 1, 20, 0);
+        DateEvenement jour2 = new DateEvenement(2026, 1, 2, 8, 0);
+
+        // WHEN
+        boolean resultat = jour1.estAvant(jour2);
+
+        // THEN
+        assertTrue(resultat);
+    }
+
+    @Test
+    void test_DateEvenement_estAvant_faux_apres() {
+        // GIVEN
+        DateEvenement tard = new DateEvenement(2026, 1, 1, 10, 0);
+        DateEvenement tot = new DateEvenement(2026, 1, 1, 9, 0);
+
+        // WHEN
+        boolean resultat = tard.estAvant(tot);
+
+        // THEN
+        assertFalse(resultat);
+    }
+
+    @Test
+    void test_DateEvenement_estAvant_faux_identique() {
+        // GIVEN
+        DateEvenement date1 = new DateEvenement(2026, 1, 1, 8, 0);
+        DateEvenement date2 = new DateEvenement(2026, 1, 1, 8, 0);
+
+        // WHEN
+        boolean resultat = date1.estAvant(date2);
+
+        // THEN
+        assertFalse(resultat);
+    }
+
+    @Test
+    void test_DateEvenement_ecartEnJours_meme_jour() {
+        // GIVEN
+        DateEvenement matin = new DateEvenement(2026, 1, 1, 8, 0);
+        DateEvenement soir = new DateEvenement(2026, 1, 1, 20, 0);
+
+        // WHEN
+        long ecart = matin.ecartEnJours(soir);
+
+        // THEN
+        assertEquals(0, ecart);
+    }
+
+    @Test
+    void test_DateEvenement_ecartEnJours_lendemain() {
+        // GIVEN
+        DateEvenement jour1 = new DateEvenement(2026, 1, 1, 23, 0);
+        DateEvenement jour2 = new DateEvenement(2026, 1, 2, 1, 0);
+
+        // WHEN
+        long ecart = jour1.ecartEnJours(jour2);
+
+        // THEN
+        assertEquals(1, ecart);
+    }
+
+    @Test
+    void test_DateEvenement_ecartEnJours_une_semaine() {
+        // GIVEN
+        DateEvenement dateInitiale = new DateEvenement(2026, 1, 1, 8, 0);
+        DateEvenement datePlusTard = new DateEvenement(2026, 1, 8, 8, 0);
+
+        // WHEN
+        long ecart = dateInitiale.ecartEnJours(datePlusTard);
+
+        // THEN
+        assertEquals(7, ecart);
     }
 
 

@@ -1,5 +1,7 @@
 package com.calendar.vo;
 
+import java.time.LocalDateTime;
+
 /**
  * Valeur représentant la date d'un évènement
  * @param annee
@@ -26,5 +28,24 @@ public record DateEvenement(int annee,int mois, int jour, int heure, int minute)
         if(minute<0 || minute>59){
             throw new IllegalArgumentException("La minute entrée n'est pas entre 0 et 59.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d/%02d/%02d à %02dh%02d",
+                annee, mois, jour, heure, minute);
+    }
+
+    public boolean estAvant(DateEvenement autre) {
+        LocalDateTime cetteDate = LocalDateTime.of(annee, mois, jour, heure, minute);
+        LocalDateTime autreDate = LocalDateTime.of(autre.annee(), autre.mois(), autre.jour(), autre.heure(), autre.minute());
+        return cetteDate.isBefore(autreDate);
+    }
+
+    public long ecartEnJours(DateEvenement autre) {
+        return Math.abs(java.time.temporal.ChronoUnit.DAYS.between(
+                LocalDateTime.of(annee, mois, jour, 0, 0),
+                LocalDateTime.of(autre.annee(), autre.mois(), autre.jour(), 0, 0)
+        ));
     }
 }
